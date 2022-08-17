@@ -27,6 +27,30 @@ token = obtenertoken("admin", "!v3G@!4@Y")
 
 
 
+nombreTenant = "Rodolfo_Tenant"
+
+def creartenant():
+    url_crearTenant = "https://sandboxapicdc.cisco.com/api/mo/uni.json"
+
+    body = {
+      "fvTenant": {
+         "attributes": {
+            "name": nombreTenant
+         }
+      }
+     }
+
+    headers = {
+        "Cookie": f"APIC-Cookie={token}",
+    }
+
+    requests.packages.urllib3.disable_warnings()
+    response = requests.post(url_crearTenant, data=json.dumps(body), headers=headers, verify=False)
+
+
+
+creartenant()
+
 def obtenertenants():
     url_Tenants = "https://sandboxapicdc.cisco.com/api/class/fvTenant.json"
     requests.packages.urllib3.disable_warnings()
